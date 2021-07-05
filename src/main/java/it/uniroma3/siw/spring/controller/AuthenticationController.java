@@ -40,10 +40,7 @@ public class AuthenticationController {
 		return "loginForm";
 	}
 	
-	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
-	public String logout(Model model) {
-		return "index";
-	}
+
 	
     @RequestMapping(value = "/default", method = RequestMethod.GET)
     public String defaultAfterLogin(Model model) {

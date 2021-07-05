@@ -49,9 +49,10 @@ public class ConcertoController {
     	model.addAttribute("canzone", new Canzone());
     	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered());
     	model.addAttribute("canzoniConcerto",c.getCanzoni());
-   
+    	
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = this.concertoService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	
     	model.addAttribute("credentials", credentials);
     	return "concerto.html";
     }
@@ -90,6 +91,7 @@ public class ConcertoController {
     	
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = this.concertoService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	
     	model.addAttribute("credentials", credentials);
     	return "concerto.html";
     }
@@ -107,6 +109,7 @@ public class ConcertoController {
     	
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = this.concertoService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	
     	model.addAttribute("credentials", credentials);
     	return "concerto.html";
     }

@@ -23,8 +23,8 @@ public class CanzoneValidator implements Validator {
 	@Override
 	public void validate(Object o, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titolo", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descrizione", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "immagine", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "testo", "required");
+		
 
 		if (!errors.hasErrors()) {
 			logger.debug("confermato: valori non nulli");

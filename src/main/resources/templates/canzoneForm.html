@@ -24,7 +24,7 @@
 			<div>
 				<span class="campo-form">Testo:</span>
 				<span><input type="text" th:field="*{testo}" /></span>
-				<span th:if="${#fields.hasErrors('testo')}" th:errors="*{descrizione}"></span>
+				<span th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}"></span>
 			</div>
 	
 			<div>

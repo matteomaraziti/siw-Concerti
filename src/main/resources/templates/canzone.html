@@ -7,7 +7,6 @@
 		<p class="titolo">INTERNATIONAL MUSEUM</p>
 	</nav>
 	<div th:if="${canzone}" th:object="${canzone}" class="flex-container">
-		<div><img th:src="@{${'/images/'+canzone.immagine}}" /></div>
 		<div class="info">
 			Titolo: <span th:text="*{titolo}">qui-va-titolo</span><br>
 			Descrizione: <span th:text="*{testo}">qui-va-descrizione</span><br>

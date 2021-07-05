@@ -34,7 +34,7 @@ public class CanzoneService {
 	}
 	
 	@Transactional
-	public List<Canzone> canzonePerTitoloAndDescrizione(String titolo) {
+	public List<Canzone> canzonePerTitolo(String titolo) {
 		return canzoneRepository.findByTitolo(titolo);
 	}
 

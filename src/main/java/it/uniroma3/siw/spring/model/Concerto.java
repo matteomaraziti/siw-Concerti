@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 @Entity
@@ -28,9 +29,23 @@ public class Concerto {
 	
 	@ManyToOne
 	private Sponsor sponsor;
+	@ManyToMany
+	private List<User> iscritti;
 	
 	public Concerto() {
 		canzoni=new ArrayList<Canzone>();
+		this.iscritti=new ArrayList<>();
+	}
+	
+	public List<User> getIscritti() {
+		return iscritti;
+	}
+
+	public void setIscritti(List<User> iscritti) {
+		this.iscritti = iscritti;
+	}
+	public void addIscritto(User u) {
+		this.iscritti.add(u);
 	}
 
 	public long getId() {
