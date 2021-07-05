@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.spring.model.Concerto;
 import it.uniroma3.siw.spring.model.Credentials;
-import it.uniroma3.siw.spring.model.Opera;
+import it.uniroma3.siw.spring.model.Canzone;
 import it.uniroma3.siw.spring.service.ConcertoService;
-import it.uniroma3.siw.spring.service.CuratoreService;
-import it.uniroma3.siw.spring.service.OperaService;
+import it.uniroma3.siw.spring.service.SponsorService;
+import it.uniroma3.siw.spring.service.CanzoneService;
 
 @Controller
 public class ConcertoController {
@@ -31,24 +31,24 @@ public class ConcertoController {
     @Autowired
     private ConcertoValidator concertoValidator;
     
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+   
     
 
     @RequestMapping(value="/admin/addConcerto", method = RequestMethod.GET)
     public String addCollezione(Model model) {
     	
     	model.addAttribute("concerto", new Concerto());
-    	model.addAttribute("curatori",concertoService.getCuratoreService().tutti());
+    	model.addAttribute("sponsors",concertoService.getSponsorService().tutti());
         return "concertoForm.html";
     }
 
     @RequestMapping(value = "/concerto/{id}", method = RequestMethod.GET)
     public String getCollezione(@PathVariable("id") Long id, Model model) {
-    	Concerto c = this.concertoService.collezionePerId(id);
+    	Concerto c = this.concertoService.concertoPerId(id);
     	model.addAttribute("concerto", c);
-    	model.addAttribute("opera", new Opera());
-    	model.addAttribute("opere",concertoService.getOperaService().getOpereFiltered());
-    	model.addAttribute("opereConcerto",c.getOpere());
+    	model.addAttribute("canzone", new Canzone());
+    	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered());
+    	model.addAttribute("canzoniConcerto",c.getCanzoni());
    
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = this.concertoService.getCredentialsService().getCredentials(userDetails.getUsername());
@@ -71,20 +71,22 @@ public class ConcertoController {
             model.addAttribute("concerti", this.concertoService.tutti());
             return "concerti.html";
         }
+        model.addAttribute("concerto", new Concerto());
+    	model.addAttribute("sponsors",concertoService.getSponsorService().tutti());
         return "concertoForm.html";
     }
     
-    @RequestMapping(value = "/admin/addOperaAConcerto/{id}", method = RequestMethod.POST)
-    public String aggiungiOpera(@RequestParam("opera") Long idOpera, 
+    @RequestMapping(value = "/admin/addCanzoneAConcerto/{id}", method = RequestMethod.POST)
+    public String aggiungiOpera(@RequestParam("canzone") Long idCanzone, 
     									Model model, @PathVariable("id") Long idConcerto) {
     	
-    	Opera o=concertoService.getOperaService().operaPerId(idOpera);
-    	Concerto c = this.concertoService.collezionePerId(idConcerto);
-    	o.setCollezione(c);
-    	concertoService.getOperaService().inserisci(o);
-    	model.addAttribute("concerto", this.concertoService.collezionePerId(idConcerto));
-    	model.addAttribute("opere",concertoService.getOperaService().getOpereFiltered());
-    	model.addAttribute("opereConcerto",c.getOpere());
+    	Canzone o=concertoService.getCanzoneService().canzonePerId(idCanzone);
+    	Concerto c = this.concertoService.concertoPerId(idConcerto);
+    	o.setConcerto(c);
+    	concertoService.getCanzoneService().inserisci(o);
+    	model.addAttribute("concerto", this.concertoService.concertoPerId(idConcerto));
+    	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered());
+    	model.addAttribute("canzoniConcerto",c.getCanzoni());
     	
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = this.concertoService.getCredentialsService().getCredentials(userDetails.getUsername());
@@ -92,16 +94,16 @@ public class ConcertoController {
     	return "concerto.html";
     }
     
-    @RequestMapping(value = "/admin/rimuoviOpera/{id}", method = RequestMethod.POST)
-    public String rimuoviOpera(@RequestParam("opera") Long idOpera, 
+    @RequestMapping(value = "/admin/rimuoviCanzone/{id}", method = RequestMethod.POST)
+    public String rimuoviOpera(@RequestParam("canzone") Long idCanzone, 
     									Model model, @PathVariable("id") Long idConcerto) {
-    	Concerto c = this.concertoService.collezionePerId(idConcerto);
-    	Opera o=concertoService.getOperaService().operaPerId(idOpera);
-    	o.setCollezione(null);
-    	concertoService.getOperaService().inserisci(o);
+    	Concerto c = this.concertoService.concertoPerId(idConcerto);
+    	Canzone o=concertoService.getCanzoneService().canzonePerId(idCanzone);
+    	o.setConcerto(null);
+    	concertoService.getCanzoneService().inserisci(o);
     	model.addAttribute("concerto", c);
-    	model.addAttribute("opere",concertoService.getOperaService().getOpereFiltered());
-    	model.addAttribute("opereConcerto",c.getOpere());
+    	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered());
+    	model.addAttribute("canzoniConcerto",c.getCanzoni());
     	
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = this.concertoService.getCredentialsService().getCredentials(userDetails.getUsername());
@@ -112,8 +114,8 @@ public class ConcertoController {
     @RequestMapping(value = "/admin/eliminaConcerto/{id}", method = RequestMethod.POST)
     public String eliminaCollezione(Model model, @PathVariable("id") Long idConcerto) {
     		
-    		Concerto c=concertoService.collezionePerId(idConcerto);
-    		concertoService.eliminaCollezione(c);
+    		Concerto c=concertoService.concertoPerId(idConcerto);
+    		concertoService.eliminaConcerto(c);
     		model.addAttribute("concerti", this.concertoService.tutti());
     		return "concerti.html";
     }

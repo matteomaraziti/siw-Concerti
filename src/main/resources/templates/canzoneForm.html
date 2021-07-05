@@ -10,7 +10,7 @@
 	<nav>
 		<p class="titolo">ROME MUSEUM</p>
 	</nav>
-	<form th:action="@{/admin/opera}" method="POST" th:object="${opera}">
+	<form th:action="@{/admin/canzone}" method="POST" th:object="${canzone}">
 		<h4 class="titolo">Inserisci i dati di un'opera</h4>
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
@@ -22,15 +22,11 @@
 				<span th:if="${#fields.hasErrors('titolo')}" th:errors="*{titolo}"></span>
 			</div>
 			<div>
-				<span class="campo-form">Descrizione:</span>
-				<span><input type="text" th:field="*{descrizione}" /></span>
-				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+				<span class="campo-form">Testo:</span>
+				<span><input type="text" th:field="*{testo}" /></span>
+				<span th:if="${#fields.hasErrors('testo')}" th:errors="*{descrizione}"></span>
 			</div>
-			<div>
-				<span class="campo-form">Immagine:</span>
-				<span><input type="text" th:field="*{immagine}" /></span>
-				<span th:if="${#fields.hasErrors('immagine')}" th:errors="*{immagine}"></span>
-			</div>
+	
 			<div>
 				<span class="campo-form">Anno di realizzazione:</span>
 				<span><input type="text" th:field="*{annoDiRealizzazione}" /></span>

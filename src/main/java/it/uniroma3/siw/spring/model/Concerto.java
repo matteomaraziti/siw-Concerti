@@ -23,14 +23,14 @@ public class Concerto {
 	@Column(nullable=false)
 	private String descrizione;
 	
-	@OneToMany(mappedBy="collezione")
-	private List<Opera> opere;
+	@OneToMany(mappedBy="concerto")
+	private List<Canzone> canzoni;
 	
 	@ManyToOne
-	private Curatore curatore;
+	private Sponsor sponsor;
 	
 	public Concerto() {
-		opere=new ArrayList<Opera>();
+		canzoni=new ArrayList<Canzone>();
 	}
 
 	public long getId() {
@@ -57,28 +57,28 @@ public class Concerto {
 		this.descrizione = descrizione;
 	}
 
-	public List<Opera> getOpere() {
-		return opere;
+	public List<Canzone> getCanzoni() {
+		return canzoni;
 	}
 
-	public void setOpere(List<Opera> opere) {
-		this.opere = opere;
+	public void setCanzoni(List<Canzone> opere) {
+		this.canzoni = opere;
 	}
 	
-	public void addOpera(Opera o) {
-		this.opere.add(o);
+	public void addCanzone(Canzone o) {
+		this.canzoni.add(o);
 	}
 	
-	public void rimuoviOpera(Opera o) {
-		this.opere.remove(o);
+	public void rimuoviCanzone(Canzone o) {
+		this.canzoni.remove(o);
 	}
 
-	public Curatore getCuratore() {
-		return curatore;
+	public Sponsor getSponsor() {
+		return sponsor;
 	}
 
-	public void setCuratore(Curatore curatore) {
-		this.curatore = curatore;
+	public void setSponsor(Sponsor sponsor) {
+		this.sponsor = sponsor;
 	}
 	
 	

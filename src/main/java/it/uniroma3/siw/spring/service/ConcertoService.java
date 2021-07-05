@@ -9,20 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.spring.model.Concerto;
-import it.uniroma3.siw.spring.model.Opera;
+import it.uniroma3.siw.spring.model.Canzone;
 import it.uniroma3.siw.spring.repository.ConcertoRepository;
 
 @Service
 public class ConcertoService {
 	
 	@Autowired
-	private ConcertoRepository collezioneRepository; 
+	private ConcertoRepository concertoRepository; 
 	
 	@Autowired
-	private OperaService operaService;
+	private CanzoneService canzoneService;
 	
 	@Autowired
-	private CuratoreService curatoreService;
+	private SponsorService sponsorService;
 	
 	@Autowired
 	private CredentialsService credentialsService;
@@ -31,32 +31,32 @@ public class ConcertoService {
 		return credentialsService;
 	}
 
-	public OperaService getOperaService() {
-		return operaService;
+	public CanzoneService getCanzoneService() {
+		return canzoneService;
 	}
 
-	public CuratoreService getCuratoreService() {
-		return curatoreService;
+	public SponsorService getSponsorService() {
+		return sponsorService;
 	}
 
 	@Transactional
-	public Concerto inserisci(Concerto collezione) {
-		return collezioneRepository.save(collezione);
+	public Concerto inserisci(Concerto concerto) {
+		return concertoRepository.save(concerto);
 	}
 	
 	@Transactional
-	public List<Concerto> collezionePerNomeAndDescrizione(String nome, String descrizione) {
-		return collezioneRepository.findByNomeAndDescrizione(nome, descrizione);
+	public List<Concerto> concertoPerNomeAndDescrizione(String nome, String descrizione) {
+		return concertoRepository.findByNomeAndDescrizione(nome, descrizione);
 	}
 
 	@Transactional
 	public List<Concerto> tutti() {
-		return (List<Concerto>) collezioneRepository.findAll();
+		return (List<Concerto>) concertoRepository.findAll();
 	}
 
 	@Transactional
-	public Concerto collezionePerId(Long id) {
-		Optional<Concerto> optional = collezioneRepository.findById(id);
+	public Concerto concertoPerId(Long id) {
+		Optional<Concerto> optional = concertoRepository.findById(id);
 		if (optional.isPresent())
 			return optional.get();
 		else 
@@ -65,7 +65,7 @@ public class ConcertoService {
 
 	@Transactional
 	public boolean alreadyExists(Concerto collezione) {
-		List<Concerto> collezioni = this.collezioneRepository.findByNomeAndDescrizione(collezione.getNome(), collezione.getDescrizione());
+		List<Concerto> collezioni = this.concertoRepository.findByNome(collezione.getNome());
 		if (collezioni.size() > 0)
 			return true;
 		else 
@@ -73,12 +73,12 @@ public class ConcertoService {
 	}
 	
 	@Transactional
-	public void eliminaCollezione(Concerto c) {
-		for(Opera o:c.getOpere()) {
-			o.setCollezione(null);
-			operaService.inserisci(o);
+	public void eliminaConcerto(Concerto c) {
+		for(Canzone o:c.getCanzoni()) {
+			o.setConcerto(null);
+			canzoneService.inserisci(o);
 		}
-		collezioneRepository.delete(c);
+		concertoRepository.delete(c);
 	}
 	
 

@@ -8,23 +8,23 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.uniroma3.siw.spring.model.Curatore;
-import it.uniroma3.siw.spring.repository.CuratoreRepository;
+import it.uniroma3.siw.spring.model.Sponsor;
+import it.uniroma3.siw.spring.repository.SponsorRepository;
 
 @Service
-public class CuratoreService{
+public class SponsorService{
 
 	@Autowired
-	private CuratoreRepository curatoreRepository; 
+	private SponsorRepository curatoreRepository; 
 	
 	@Transactional
-	public List<Curatore> tutti() {
-		return (List<Curatore>) curatoreRepository.findAll();
+	public List<Sponsor> tutti() {
+		return (List<Sponsor>) curatoreRepository.findAll();
 	}
 
 	@Transactional
-	public Curatore curatorePerId(Long id) {
-		Optional<Curatore> optional = curatoreRepository.findById(id);
+	public Sponsor curatorePerId(Long id) {
+		Optional<Sponsor> optional = curatoreRepository.findById(id);
 		if (optional.isPresent())
 			return optional.get();
 		else 

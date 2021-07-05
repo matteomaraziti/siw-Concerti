@@ -35,7 +35,7 @@ public class Artista {
 	private String immagine;
 	
 	@OneToMany(mappedBy="artista")
-	private List<Opera> opere;
+	private List<Canzone> canzoni;
 	
 	public Date getDataDiNascita() {
 		return dataDiNascita;
@@ -85,12 +85,12 @@ public class Artista {
 		this.immagine = immagine;
 	}
 
-	public List<Opera> getOpere() {
-		return opere;
+	public List<Canzone> getCanzoni() {
+		return canzoni;
 	}
 
-	public void setOpere(List<Opera> opere) {
-		this.opere = opere;
+	public void setCanzoni(List<Canzone> canzoni) {
+		this.canzoni = canzoni;
 	}
 	
 	

@@ -29,9 +29,9 @@
 			</div>
 			<div>
 				<span class="campo-form">Curatore:</span>
-				<select class="input2" name="curatore" id="curatore" th:field="*{curatore}">
+				<select class="input2" name="sponsor" id="sponsor" th:field="*{sponsor}">
 					<option value="">---Seleziona---</option>
-					<option th:each="curatore : ${curatori}" th:value="${curatore.id}" th:text="${curatore.nome}">
+					<option th:each="sponsor : ${sponsors}" th:value="${sponsor.id}" th:text="${sponsor.nome}">
 					</option>
 				</select>
 			</div>

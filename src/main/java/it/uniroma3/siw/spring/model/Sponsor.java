@@ -11,8 +11,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-@NamedQuery(name = "findAllCuratori", query = "SELECT c FROM Curatore c")
-public class Curatore {
+@NamedQuery(name = "findAllCuratori", query = "SELECT c FROM Sponsor c")
+public class Sponsor {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,11 +21,9 @@ public class Curatore {
 	@Column(nullable=false)
 	private String nome;
 	
-	@Column(nullable=false)
-	private String cognome;
 	
-	@OneToMany(mappedBy="curatore")
-	private List<Concerto> collezioni;
+	@OneToMany(mappedBy="sponsor")
+	private List<Concerto> concerti;
 
 	public long getId() {
 		return id;
@@ -43,20 +41,14 @@ public class Curatore {
 		this.nome = nome;
 	}
 
-	public String getCognome() {
-		return cognome;
+
+
+	public List<Concerto> getConcerti() {
+		return concerti;
 	}
 
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
-	}
-
-	public List<Concerto> getCollections() {
-		return collezioni;
-	}
-
-	public void setCollections(List<Concerto> collezioni) {
-		this.collezioni = collezioni;
+	public void setConcerti(List<Concerto> concerti) {
+		this.concerti = concerti;
 	}
 	
 	

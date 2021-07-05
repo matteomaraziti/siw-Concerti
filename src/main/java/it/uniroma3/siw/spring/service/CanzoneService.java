@@ -9,14 +9,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.uniroma3.siw.spring.model.Opera;
-import it.uniroma3.siw.spring.repository.OperaRepository;
+import it.uniroma3.siw.spring.model.Canzone;
+import it.uniroma3.siw.spring.repository.CanzoneRepository;
 @Service
-public class OperaService {
+public class CanzoneService {
 	
 	
 	@Autowired
-	private OperaRepository operaRepository; 
+	private CanzoneRepository canzoneRepository; 
 	
 	@Autowired
 	private ArtistaService artistaService;
@@ -29,23 +29,23 @@ public class OperaService {
 	}
 
 	@Transactional
-	public Opera inserisci(Opera opera) {
-		return operaRepository.save(opera);
+	public Canzone inserisci(Canzone canzone) {
+		return canzoneRepository.save(canzone);
 	}
 	
 	@Transactional
-	public List<Opera> operaPerTitoloAndDescrizione(String titolo) {
-		return operaRepository.findByTitolo(titolo);
+	public List<Canzone> canzonePerTitoloAndDescrizione(String titolo) {
+		return canzoneRepository.findByTitolo(titolo);
 	}
 
 	@Transactional
-	public List<Opera> tutti() {
-		return (List<Opera>) operaRepository.findAll();
+	public List<Canzone> tutti() {
+		return (List<Canzone>) canzoneRepository.findAll();
 	}
 
 	@Transactional
-	public Opera operaPerId(Long id) {
-		Optional<Opera> optional = operaRepository.findById(id);
+	public Canzone canzonePerId(Long id) {
+		Optional<Canzone> optional = canzoneRepository.findById(id);
 		if (optional.isPresent())
 			return optional.get();
 		else 
@@ -53,8 +53,8 @@ public class OperaService {
 	}
 
 	@Transactional
-	public boolean alreadyExists(Opera opera) {
-		List<Opera> opere = this.operaRepository.findByTitolo(opera.getTitolo());
+	public boolean alreadyExists(Canzone canzone) {
+		List<Canzone> opere = this.canzoneRepository.findByTitolo(canzone.getTitolo());
 		if (opere.size() > 0)
 			return true;
 		else 
@@ -63,24 +63,24 @@ public class OperaService {
 	
 	
 	@Transactional
-	public List<Opera> filtraLista(List<Opera> lista) {
-		List<Opera> opere=this.tutti();
-		for(Opera o:lista) {	//rimuovo opere che appartengono già alla collezione
+	public List<Canzone> filtraLista(List<Canzone> lista) {
+		List<Canzone> opere=this.tutti();
+		for(Canzone o:lista) {	//rimuovo opere che appartengono già alla collezione
 			opere.remove(o);
 		}
 		return opere;
 	}
 	
 	@Transactional
-	public void eliminaOpera(Opera o) {
-		operaRepository.delete(o);
+	public void eliminaCanzone(Canzone o) {
+		canzoneRepository.delete(o);
 	}
 	
 	@Transactional
-	public List<Opera> getOpereFiltered(){
-		List<Opera> filtrato=new ArrayList<>();
-		for(Opera o: this.tutti()) {
-			if(o.getCollezione()==null)
+	public List<Canzone> getCanzoniFiltered(){
+		List<Canzone> filtrato=new ArrayList<>();
+		for(Canzone o: this.tutti()) {
+			if(o.getConcerto()==null)
 				filtrato.add(o);
 		}
 		return filtrato;

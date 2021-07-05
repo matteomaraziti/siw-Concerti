@@ -9,16 +9,16 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import it.uniroma3.siw.spring.model.Opera;
-import it.uniroma3.siw.spring.service.OperaService;
+import it.uniroma3.siw.spring.model.Canzone;
+import it.uniroma3.siw.spring.service.CanzoneService;
 
 
 @Component
-public class OperaValidator implements Validator {
+public class CanzoneValidator implements Validator {
 	@Autowired
-	private OperaService operaService;
+	private CanzoneService operaService;
 	
-    private static final Logger logger = LoggerFactory.getLogger(OperaValidator.class);
+    private static final Logger logger = LoggerFactory.getLogger(CanzoneValidator.class);
 
 	@Override
 	public void validate(Object o, Errors errors) {
@@ -28,7 +28,7 @@ public class OperaValidator implements Validator {
 
 		if (!errors.hasErrors()) {
 			logger.debug("confermato: valori non nulli");
-			if (this.operaService.alreadyExists((Opera)o)) {
+			if (this.operaService.alreadyExists((Canzone)o)) {
 				logger.debug("e' un duplicato");
 				errors.reject("duplicato");
 			}
@@ -37,6 +37,6 @@ public class OperaValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> aClass) {
-		return Opera.class.equals(aClass);
+		return Canzone.class.equals(aClass);
 	}
 }

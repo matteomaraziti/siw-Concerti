@@ -9,8 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name = "findAllOperas", query = "SELECT o FROM Opera o")
-public class Opera {
+@NamedQuery(name = "findAllOperas", query = "SELECT o FROM Canzone o")
+public class Canzone {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,21 +19,18 @@ public class Opera {
 	@Column(nullable=false)
 	private String titolo;
 	
-	@Column(nullable=false)
-	private String immagine;
-	
-	@Column(nullable=false)
-	private String descrizione;
+	@Column(nullable=false, length = 2000)
+	private String testo;
 	
 	private String annoDiRealizzazione;
 	
 	@ManyToOne
-	private Concerto collezione;
+	private Concerto concerto;
 	
 	@ManyToOne
 	private Artista artista;
 	
-	public Opera(){
+	public Canzone(){
 		
 	}
 
@@ -53,20 +50,12 @@ public class Opera {
 		this.titolo = titolo;
 	}
 
-	public String getImmagine() {
-		return immagine;
+	public String getTesto() {
+		return testo;
 	}
 
-	public void setImmagine(String immagine) {
-		this.immagine = immagine;
-	}
-
-	public String getDescrizione() {
-		return descrizione;
-	}
-
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
+	public void setTesto(String descrizione) {
+		this.testo = descrizione;
 	}
 
 
@@ -78,12 +67,12 @@ public class Opera {
 		this.artista = artista;
 	}
 
-	public Concerto getCollezione() {
-		return collezione;
+	public Concerto getConcerto() {
+		return concerto;
 	}
 
-	public void setCollezione(Concerto collezione) {
-		this.collezione = collezione;
+	public void setConcerto(Concerto concerto) {
+		this.concerto = concerto;
 	}
 
 	public String getAnnoDiRealizzazione() {

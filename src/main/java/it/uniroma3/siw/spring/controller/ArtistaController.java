@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.model.Artista;
-import it.uniroma3.siw.spring.model.Opera;
+import it.uniroma3.siw.spring.model.Canzone;
 import it.uniroma3.siw.spring.service.ArtistaService;
 
 @Controller
@@ -38,7 +38,7 @@ public class ArtistaController {
     public String getArtista(@PathVariable("id") Long id, Model model) {
     	Artista a=this.artistaService.artistaPerId(id);
     	model.addAttribute("artista", a);
-    	model.addAttribute("opereArtista",a.getOpere());
+    	model.addAttribute("canzoniArtista",a.getCanzoni());
     	return "artista.html";
     }
 
@@ -57,6 +57,7 @@ public class ArtistaController {
             model.addAttribute("artisti", this.artistaService.tutti());
             return "artisti.html";
         }
+        model.addAttribute("artista", new Artista());
         return "artistaForm.html";
     }
 }

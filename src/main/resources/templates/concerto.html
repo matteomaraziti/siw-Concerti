@@ -8,29 +8,29 @@
 		<p><b>Il COONCERTO:</b></p>
 			Nome: <span th:text="*{nome}">qui-va-nome</span><br>
 			Descrizione: <span th:text="*{descrizione}">qui-va-descrizione</span><br>
-			Curatore: <span th:text="*{curatore.nome}+' '+ *{curatore.cognome}">qui-va-curatore</span>
+			Curatore: <span th:text="*{sponsor.nome}">qui-va-curatore</span>
    		</div>
 		<div class="box" style="background-color: powderblue;">
 			<p><b>LE OPERE:</b></p>
 			<ul>
-				<li th:each="opera : ${opereConcerto}">
-					<a href="opera.html" 
-					   th:href="@{'/opera' + '/' + ${opera.id}}" 
-					   th:text="|${opera.titolo}|"
-					   th:value="${opera.id}"></a>
+				<li th:each="canzone : ${canzoniConcerto}">
+					<a href="canzone.html" 
+					   th:href="@{'/canzone' + '/' + ${canzone.id}}" 
+					   th:text="|${canzone.titolo}|"
+					   th:value="${canzone.id}"></a>
 				</li>
 			</ul>
 		</div>
 		<br>
 		<div class="box" style="background-color: lightcoral;" th:if="${credentials.role == 'ADMIN'}">
 			<div>
-				<p><b>AGGIUNGI OPERA A COLLEZIONE</b></p>
-				<form th:action="@{'/admin/addOperaAConcerto' + '/' + ${concerto.id}}" method="POST" >
-					<select name="opera" id="opera">
+				<p><b>AGGIUNGI CANZONE A CONCERTO</b></p>
+				<form th:action="@{'/admin/addCanzoneAConcerto' + '/' + ${concerto.id}}" method="POST" >
+					<select name="canzone" id="canzone">
 					<option value="">---Opera---</option>
-					<option th:each="opera : ${opere}"
-						th:value="${opera.id}"
-						th:text="${opera.titolo}"></option>
+					<option th:each="canzone : ${canzoni}"
+						th:value="${canzone.id}"
+						th:text="${canzone.titolo}"></option>
 					</select>
 					<div>
 						<button style="border-radius:15px;border:solid 1px ;margin-top: 3px;" type="submit" th:text="#{aggiungi.opera}"></button>
@@ -38,13 +38,13 @@
 				</form>
 			</div>
 			<div th:if="${credentials.role == 'ADMIN'}">
-				<p><b>RIMUOVI OPERA DA COLLEZIONE</b></p>
-				<form th:action="@{'/admin/rimuoviOpera' + '/' + ${concerto.id}}" method="POST" >
-					<select name="opera" id="opera">
-					<option value="">---Opera---</option>
-					<option th:each="opera : ${opereConcerto}"
-						th:value="${opera.id}"
-						th:text="${opera.titolo}"></option>
+				<p><b>RIMUOVI CANZONE DA CONCERTO</b></p>
+				<form th:action="@{'/admin/rimuoviCanzone' + '/' + ${concerto.id}}" method="POST" >
+					<select name="canzone" id="canzone">
+					<option value="">---Canzone---</option>
+					<option th:each="canzone : ${canzoniConcerto}"
+						th:value="${canzone.id}"
+						th:text="${canzone.titolo}"></option>
 					</select>
 					<div>
 						<button style="border-radius:15px;border:solid 1px ;margin-top: 3px;" type="submit" th:text="#{rimuovi.opera}"></button>

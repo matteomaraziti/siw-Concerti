@@ -8,7 +8,7 @@
 
 <body>
 	<nav>
-		<p class="titolo">INTERNATIONAL MUSEUM</p>
+		<p class="titolo">Rome Arena</p>
 	</nav>
 
 	<div th:if="${artista}" th:object="${artista}" style="display: flex; justify-content: center;">
@@ -23,12 +23,12 @@
 			</div>
 		</div>
 		<div class="box" style="width: 400px;background-color: powderblue;">
-			<h1>Le opere</h1>
+			<h1>Le canzoni</h1>
 			
 				<ul>
-					<li th:each="opera : ${opereArtista}">
-						<a href="opera.html" th:href="@{'/opera' + '/' + ${opera.id}}" th:text="|${opera.titolo}|"
-							th:value="${opera.id}"></a>
+					<li th:each="canzone: ${canzoniArtista}">
+						<a href="canzone.html" th:href="@{'/canzone' + '/' + ${canzone.id}}" th:text="|${canzone.titolo}|"
+							th:value="${canzone.id}"></a>
 					</li>
 				</ul>
 			
