@@ -54,6 +54,7 @@ public class ConcertoController {
     	Credentials credentials = this.concertoService.getCredentialsService().getCredentials(userDetails.getUsername());
     	
     	model.addAttribute("credentials", credentials);
+    	model.addAttribute("iscritto",c.getIscritti().contains(credentials.getUser()));
     	return "concerto.html";
     }
 
@@ -93,6 +94,7 @@ public class ConcertoController {
     	Credentials credentials = this.concertoService.getCredentialsService().getCredentials(userDetails.getUsername());
     	
     	model.addAttribute("credentials", credentials);
+    	model.addAttribute("iscritto",c.getIscritti().contains(credentials.getUser()));
     	return "concerto.html";
     }
     
@@ -111,6 +113,7 @@ public class ConcertoController {
     	Credentials credentials = this.concertoService.getCredentialsService().getCredentials(userDetails.getUsername());
     	
     	model.addAttribute("credentials", credentials);
+    	model.addAttribute("iscritto",c.getIscritti().contains(credentials.getUser()));
     	return "concerto.html";
     }
     

@@ -65,11 +65,17 @@
 			</form>
 		</div>
 
-		<div><a href="/default" ><button class="sub-button" style="margin-top: 19px;">Home</button></a></div>
+		<div><a href="/default"><button class="sub-button" style="margin-top: 19px;">Home</button></a></div>
 
-		<form th:object="${concerto}" th:action="@{'/aggiungiPrenotazione' + '/' + ${concerto.id}}"
-		method="POST"><button class="sub-button"
-				style="margin-top: 19px;">Iscriviti</button></form>
+		<form th:if="${iscritto == false}" th:object="${concerto}"
+			th:action="@{'/aggiungiPrenotazione' + '/' + ${concerto.id}}" method="POST"><button class="sub-button"
+				style="margin-top: 19px;">Iscriviti</button>
+		</form>
+
+		<form th:if="${iscritto == true}" th:object="${concerto}"
+			th:action="@{'/eliminaPrenotazione' + '/' + ${concerto.id}}" method="POST"><button class="sub-button"
+				style="margin-top: 19px;">Disiscriviti</button>
+		</form>
 
 
 	</div>

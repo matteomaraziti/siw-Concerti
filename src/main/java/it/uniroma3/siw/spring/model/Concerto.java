@@ -29,6 +29,7 @@ public class Concerto {
 	
 	@ManyToOne
 	private Sponsor sponsor;
+	
 	@ManyToMany
 	private List<User> iscritti;
 	
@@ -46,6 +47,10 @@ public class Concerto {
 	}
 	public void addIscritto(User u) {
 		this.iscritti.add(u);
+	}
+	
+	public void removeIscritto(User u) {
+		this.iscritti.remove(u);
 	}
 
 	public long getId() {
