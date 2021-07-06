@@ -23,7 +23,7 @@
 			</ul>
 		</div>
 		<br>
-		<div class="box" style="background-color: lightcoral;" th:if="${credentials.role == 'ADMIN'}">
+		<div class="box" style="background-color: rgba(240, 128, 128, 0.445) ;" th:if="${credentials.role == 'ADMIN'}">
 			<div>
 				<p><b>AGGIUNGI CANZONE A CONCERTO</b></p>
 				<form th:action="@{'/admin/addCanzoneAConcerto' + '/' + ${concerto.id}}" method="POST">

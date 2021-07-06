@@ -13,7 +13,16 @@
 
 	<div th:if="${artista}" th:object="${artista}" style="display: flex; justify-content: center;">
 		<div class="box" style="display: flex;width: 400px;background-color: khaki">
-			<div><img th:src="@{${'/images/'+artista.immagine}}" /></div>
+			<div th:if="${artista.immagine}!=null">
+				<img th:src="@{${'/images/'+artista.immagine}}" />
+			</div>
+			<div th:if="${artista.immagine}==null and ${credentials.role}=='ADMIN'">
+				
+				 <form th:action="@{'/admin/addImage/'+ ${artista.id}}" method="POST"  enctype="multipart/form-data">
+					<input type="file" name="immagine"/>
+					<span><button type="submit" th:text="#{invio}">Invio</button></span>
+				</form>
+			</div>
 			<div class="info">
 				Nome:<span th:text="*{nome}">qui-va-nome</span><br>
 				Cognome:<span th:text="*{cognome}">qui-va-cognome</span><br>

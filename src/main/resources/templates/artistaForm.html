@@ -27,11 +27,7 @@
 				<span><input type="text" th:field="*{cognome}" /></span>
 				<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
 			</div>
-			<div>
-				<span class="campo-form">Immagine:</span>
-				<span><input type="text" th:field="*{immagine}" /></span>
-				<span th:if="${#fields.hasErrors('immagine')}" th:errors="*{immagine}"></span>
-			</div>
+			
 			<div>
 				<span class="campo-form">Data di nascita:</span>
 				<span><input type="date" th:field="*{dataDiNascita}"/></span>

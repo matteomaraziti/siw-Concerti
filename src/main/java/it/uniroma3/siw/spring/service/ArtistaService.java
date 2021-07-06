@@ -17,6 +17,25 @@ public class ArtistaService {
 	@Autowired
 	private ArtistaRepository artistaRepository; 
 	
+	@Autowired
+	private CredentialsService credentialsService;
+	
+	public ArtistaRepository getArtistaRepository() {
+		return artistaRepository;
+	}
+
+	public void setArtistaRepository(ArtistaRepository artistaRepository) {
+		this.artistaRepository = artistaRepository;
+	}
+
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
+	}
+
+	public void setCredentialsService(CredentialsService credentialsService) {
+		this.credentialsService = credentialsService;
+	}
+
 	@Transactional
 	public Artista inserisci(Artista artista) {
 		return artistaRepository.save(artista);
@@ -25,6 +44,10 @@ public class ArtistaService {
 	@Transactional
 	public List<Artista> artistiPerNomeAndCognome(String nome, String cognome) {
 		return artistaRepository.findByNomeAndCognome(nome, cognome);
+	}
+	@Transactional
+	public Artista artistaPerNomeAndCognome(String nome, String cognome) {
+		return artistaRepository.findByNomeAndCognome(nome, cognome).get(0);
 	}
 
 	@Transactional
