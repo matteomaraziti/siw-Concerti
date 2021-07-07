@@ -7,21 +7,21 @@
 </head>
 
 <body>
-    <section>
-        <h4 th:text="#{header.index}" class="titolo">Menu</h4>
+    <h4 th:text="#{header.index}" class="titolo">Menu</h4>
+    <section class="pannello">
         <div>
-           <a href="/admin/addArtista"><button class="button" style="background-color:gold ;box-shadow:0 9px goldenrod;"th:text="#{ins.artista}">Inserisci dati artista</button></a>
+           <a href="/admin/addArtista"><button class="button" th:text="#{ins.artista}">Inserisci dati artista</button></a>
         </div>
        
         <div>
-            <a href="/admin/addConcerto"><button class="button" style="background-color: crimson;box-shadow: 0 9px darkred;"th:text="#{ins.collezione}">Inserisci dati collezione</button></a>
+            <a href="/admin/addConcerto"><button class="button" th:text="#{ins.collezione}">Inserisci dati collezione</button></a>
         </div>
       
         <div>
-            <a href="/admin/addCanzone"><button class="button" style="background-color: green; box-shadow: 0 9px darkgreen;"th:text="#{ins.opera}">Inserisci dati opera</button></a>
+            <a href="/admin/addCanzone"><button class="button" th:text="#{ins.opera}">Inserisci dati opera</button></a>
         </div>
         <div>
-            <a href="/default"><button class="button" style="background-color: whitesmoke; box-shadow: 0 9px lightgrey;"th:text="#{indietro}">Torna indietro</button> </a>
+            <a href="/default"><button class="button" th:text="#{indietro}">Torna indietro</button> </a>
         </div>
 
     </section>
