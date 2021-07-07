@@ -84,8 +84,10 @@ public class ConcertoController {
     	
     	Canzone o=concertoService.getCanzoneService().canzonePerId(idCanzone);
     	Concerto c = this.concertoService.concertoPerId(idConcerto);
-    	o.addConcerto(c);
-    	concertoService.getCanzoneService().inserisci(o);
+    	if(!o.getConcerti().contains(c)) {
+    			o.addConcerto(c);
+    			concertoService.getCanzoneService().inserisci(o);
+    	}
     	model.addAttribute("concerto", this.concertoService.concertoPerId(idConcerto));
     	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered(c));
     	model.addAttribute("canzoniConcerto",c.getCanzoni());
@@ -103,8 +105,11 @@ public class ConcertoController {
     									Model model, @PathVariable("id") Long idConcerto) {
     	Concerto c = this.concertoService.concertoPerId(idConcerto);
     	Canzone o=concertoService.getCanzoneService().canzonePerId(idCanzone);
-    	o.removeConcerto(c);
-    	concertoService.getCanzoneService().inserisci(o);
+    	if(o.getConcerti().contains(c)) {
+    		
+    		o.removeConcerto(c);
+    		concertoService.getCanzoneService().inserisci(o);
+    	}
     	model.addAttribute("concerto", c);
     	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered(c));
     	model.addAttribute("canzoniConcerto",c.getCanzoni());
