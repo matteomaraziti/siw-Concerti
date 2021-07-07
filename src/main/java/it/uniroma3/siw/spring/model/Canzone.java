@@ -1,10 +1,14 @@
 package it.uniroma3.siw.spring.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
@@ -24,14 +28,14 @@ public class Canzone {
 	
 	private String annoDiRealizzazione;
 	
-	@ManyToOne
-	private Concerto concerto;
+	@ManyToMany
+	private List<Concerto> concerti;
 	
 	@ManyToOne
 	private Artista artista;
 	
 	public Canzone(){
-		
+		concerti=new ArrayList<>();
 	}
 
 	public long getId() {
@@ -67,14 +71,19 @@ public class Canzone {
 		this.artista = artista;
 	}
 
-	public Concerto getConcerto() {
-		return concerto;
+	public List<Concerto> getConcerti() {
+		return concerti;
 	}
 
-	public void setConcerto(Concerto concerto) {
-		this.concerto = concerto;
+	public void setConcerti(List<Concerto> concerti) {
+		this.concerti = concerti;
 	}
-
+	public void addConcerto(Concerto c) {
+		this.concerti.add(c);
+	}
+	public void removeConcerto(Concerto c) {
+		this.concerti.remove(c);
+	}
 	public String getAnnoDiRealizzazione() {
 		return annoDiRealizzazione;
 	}

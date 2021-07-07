@@ -10,20 +10,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.spring.model.Canzone;
+import it.uniroma3.siw.spring.model.Concerto;
 import it.uniroma3.siw.spring.repository.CanzoneRepository;
 @Service
 public class CanzoneService {
-	
-	
+
+
 	@Autowired
 	private CanzoneRepository canzoneRepository; 
-	
+
 	@Autowired
 	private ArtistaService artistaService;
-	
+
 	@Autowired
 	private CredentialsService credentialsService;
-	
+
 	public ArtistaService getArtistaService() {
 		return artistaService;
 	}
@@ -32,7 +33,7 @@ public class CanzoneService {
 	public Canzone inserisci(Canzone canzone) {
 		return canzoneRepository.save(canzone);
 	}
-	
+
 	@Transactional
 	public List<Canzone> canzonePerTitolo(String titolo) {
 		return canzoneRepository.findByTitolo(titolo);
@@ -60,8 +61,8 @@ public class CanzoneService {
 		else 
 			return false;
 	}
-	
-	
+
+
 	@Transactional
 	public List<Canzone> filtraLista(List<Canzone> lista) {
 		List<Canzone> opere=this.tutti();
@@ -70,13 +71,13 @@ public class CanzoneService {
 		}
 		return opere;
 	}
-	
+
 	@Transactional
 	public void eliminaCanzone(Canzone o) {
 		canzoneRepository.delete(o);
 	}
-	
-	@Transactional
+
+	/*@Transactional
 	public List<Canzone> getCanzoniFiltered(){
 		List<Canzone> filtrato=new ArrayList<>();
 		for(Canzone o: this.tutti()) {
@@ -84,7 +85,7 @@ public class CanzoneService {
 				filtrato.add(o);
 		}
 		return filtrato;
-	}
+	}*/
 
 	public CredentialsService getCredentialsService() {
 		return credentialsService;
@@ -98,7 +99,17 @@ public class CanzoneService {
 		this.artistaService = artistaService;
 	}
 
+	public List<Canzone> getCanzoniFiltered(Concerto c) {
+		List<Canzone> filtrato=new ArrayList<>();
+		for(Canzone o: this.tutti()) {
+			if(!o.getConcerti().contains(c))
+				filtrato.add(o);
+		}
+		return filtrato;
+	}
+}
+
 
 	
 
-}
+

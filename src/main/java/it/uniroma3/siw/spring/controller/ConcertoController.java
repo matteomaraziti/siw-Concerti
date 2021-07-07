@@ -47,7 +47,7 @@ public class ConcertoController {
     	Concerto c = this.concertoService.concertoPerId(id);
     	model.addAttribute("concerto", c);
     	model.addAttribute("canzone", new Canzone());
-    	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered());
+    	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered(c));
     	model.addAttribute("canzoniConcerto",c.getCanzoni());
     	
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -84,10 +84,10 @@ public class ConcertoController {
     	
     	Canzone o=concertoService.getCanzoneService().canzonePerId(idCanzone);
     	Concerto c = this.concertoService.concertoPerId(idConcerto);
-    	o.setConcerto(c);
+    	o.addConcerto(c);
     	concertoService.getCanzoneService().inserisci(o);
     	model.addAttribute("concerto", this.concertoService.concertoPerId(idConcerto));
-    	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered());
+    	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered(c));
     	model.addAttribute("canzoniConcerto",c.getCanzoni());
     	
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -103,10 +103,10 @@ public class ConcertoController {
     									Model model, @PathVariable("id") Long idConcerto) {
     	Concerto c = this.concertoService.concertoPerId(idConcerto);
     	Canzone o=concertoService.getCanzoneService().canzonePerId(idCanzone);
-    	o.setConcerto(null);
+    	o.removeConcerto(c);
     	concertoService.getCanzoneService().inserisci(o);
     	model.addAttribute("concerto", c);
-    	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered());
+    	model.addAttribute("canzoni",concertoService.getCanzoneService().getCanzoniFiltered(c));
     	model.addAttribute("canzoniConcerto",c.getCanzoni());
     	
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

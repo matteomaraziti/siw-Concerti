@@ -28,7 +28,7 @@ public class PrenotazioneController {
     	c.addIscritto(credentials.getUser());
     	this.prenotazioneService.getConcertoService().inserisci(c);
     	model.addAttribute("concerto", this.prenotazioneService.getConcertoService().concertoPerId(idConcerto));
-    	model.addAttribute("canzoni",this.prenotazioneService.getCanzoneService().getCanzoniFiltered());
+    	model.addAttribute("canzoni",this.prenotazioneService.getCanzoneService().getCanzoniFiltered(c));
     	model.addAttribute("canzoniConcerto",c.getCanzoni());
     	model.addAttribute("credentials",credentials);
     	model.addAttribute("iscritto",c.getIscritti().contains(credentials.getUser()));
@@ -43,7 +43,7 @@ public class PrenotazioneController {
 		c.removeIscritto(credentials.getUser());
 		this.prenotazioneService.getConcertoService().inserisci(c);
 		model.addAttribute("concerto", this.prenotazioneService.getConcertoService().concertoPerId(idConcerto));
-    	model.addAttribute("canzoni",this.prenotazioneService.getCanzoneService().getCanzoniFiltered());
+    	model.addAttribute("canzoni",this.prenotazioneService.getCanzoneService().getCanzoniFiltered(c));
     	model.addAttribute("canzoniConcerto",c.getCanzoni());
     	model.addAttribute("credentials",credentials);
     	model.addAttribute("iscritto",c.getIscritti().contains(credentials.getUser()));

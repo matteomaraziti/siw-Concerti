@@ -75,7 +75,7 @@ public class ConcertoService {
 	@Transactional
 	public void eliminaConcerto(Concerto c) {
 		for(Canzone o:c.getCanzoni()) {
-			o.setConcerto(null);
+			o.removeConcerto(c);
 			canzoneService.inserisci(o);
 		}
 		concertoRepository.delete(c);

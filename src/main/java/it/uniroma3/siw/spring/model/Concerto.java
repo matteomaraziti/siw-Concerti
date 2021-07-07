@@ -24,7 +24,7 @@ public class Concerto {
 	@Column(nullable=false)
 	private String descrizione;
 	
-	@OneToMany(mappedBy="concerto")
+	@ManyToMany(mappedBy="concerti")
 	private List<Canzone> canzoni;
 	
 	@ManyToOne
