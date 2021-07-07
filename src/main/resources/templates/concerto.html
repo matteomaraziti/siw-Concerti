@@ -7,14 +7,16 @@
 		<p class="titolo">INTERNATIONAL ARENA</p>
 	</nav>
 	<div style="display: flex; justify-content: center;">
-		<div class="box" style="background-color: khaki" th:if="${concerto}" th:object="${concerto}">
-			<p><b>Il COONCERTO:</b></p>
+		<div class="box" th:if="${concerto}" th:object="${concerto}">
+			<p><b>Il CONCERTO:</b></p>
+			<div class="info" style="padding-top: 20px;">
 			Nome: <span th:text="*{nome}">qui-va-nome</span><br>
 			Descrizione: <span th:text="*{descrizione}">qui-va-descrizione</span><br>
-			Curatore: <span th:text="*{sponsor.nome}">qui-va-curatore</span>
+			Sponsor: <span th:text="*{sponsor.nome}">qui-va-curatore</span>
+			</div>
 		</div>
-		<div class="box" style="background-color: powderblue;">
-			<p><b>LE OPERE:</b></p>
+		<div class="box">
+			<p><b>LE CANZONI:</b></p>
 			<ul>
 				<li th:each="canzone : ${canzoniConcerto}">
 					<a href="canzone.html" th:href="@{'/canzone' + '/' + ${canzone.id}}" th:text="|${canzone.titolo}|"
@@ -23,12 +25,12 @@
 			</ul>
 		</div>
 		<br>
-		<div class="box" style="background-color: rgba(240, 128, 128, 0.445) ;" th:if="${credentials.role == 'ADMIN'}">
+		<div class="box" th:if="${credentials.role == 'ADMIN'}">
 			<div>
 				<p><b>AGGIUNGI CANZONE A CONCERTO</b></p>
 				<form th:action="@{'/admin/addCanzoneAConcerto' + '/' + ${concerto.id}}" method="POST">
 					<select name="canzone" id="canzone">
-						<option value="">---Opera---</option>
+						<option value="">---Canzone---</option>
 						<option th:each="canzone : ${canzoni}" th:value="${canzone.id}" th:text="${canzone.titolo}">
 						</option>
 					</select>
@@ -66,18 +68,18 @@
 		</div>
 
 		<div><a href="/default"><button class="sub-button" style="margin-top: 19px;">Home</button></a></div>
-
-		<form th:if="${iscritto == false}" th:object="${concerto}"
+           <div>
+		<form class="bottone_form" th:if="${iscritto == false}" th:object="${concerto}"
 			th:action="@{'/aggiungiPrenotazione' + '/' + ${concerto.id}}" method="POST"><button class="sub-button"
-				style="margin-top: 19px;">Iscriviti</button>
+				>Iscriviti</button>
 		</form>
 
-		<form th:if="${iscritto == true}" th:object="${concerto}"
+		<form class="bottone_form" th:if="${iscritto == true}" th:object="${concerto}"
 			th:action="@{'/eliminaPrenotazione' + '/' + ${concerto.id}}" method="POST"><button class="sub-button"
-				style="margin-top: 19px;">Disiscriviti</button>
+				>Disiscriviti</button>
 		</form>
 
-
+        </div>
 	</div>
 </body>
 
