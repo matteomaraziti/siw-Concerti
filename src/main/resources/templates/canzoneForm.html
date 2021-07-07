@@ -15,7 +15,7 @@
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
-		<div style="text-align: right;margin-right: 35%;">
+		<div style="text-align: right;margin:0 auto; width:15%;">
 			<div>
 				<span class="campo-form">Titolo:</span>
 				<span><input type="text" th:field="*{titolo}" /></span>
@@ -28,7 +28,7 @@
 			</div>
 	
 			<div>
-				<span class="campo-form">Anno di realizzazione:</span>
+				<span class="campo-form">Anno:</span>
 				<span><input type="text" th:field="*{annoDiRealizzazione}" /></span>
 			</div>
 			<div>
