@@ -165,6 +165,8 @@ a:visited {
     padding-top: 50px;
     padding-left: 10px;
 	text-align: initial;
+	width:auto;
+	font-size:25px;
 }
 .flex-container{
 	display: flex;
@@ -180,7 +182,6 @@ a:visited {
 	padding-left:30%;
 }
 img{
-	margin:15px;
 	height:200px;
 	border: solid 2px;
 }
@@ -194,6 +195,8 @@ img{
     padding: 10px;
 	text-align: left;
 	border-radius: 30px;
+	width:auto;
+	background-color:rgba(255, 255, 255, 0.5);
 }
 
 .pannello{

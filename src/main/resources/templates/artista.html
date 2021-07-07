@@ -11,8 +11,8 @@
 		<p class="titolo">Rome Arena</p>
 	</nav>
 
-	<div th:if="${artista}" th:object="${artista}" style="display: flex; justify-content: center;">
-		<div class="box" style="display: flex;width: 400px;background-color: khaki">
+	<div th:if="${artista}" th:object="${artista}" style="display: flex; justify-content: center; padding: 5%;">
+		<div class="box" style="display: flex;">
 			<div th:if="${artista.immagine}!=null">
 				<img th:src="@{${'/images/'+artista.immagine}}" />
 			</div>
@@ -31,7 +31,7 @@
 
 			</div>
 		</div>
-		<div class="box" style="width: 400px;background-color: powderblue;">
+		<div class="box" style="width: 400px;">
 			<h1>Le canzoni</h1>
 			
 				<ul>

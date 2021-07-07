@@ -65,7 +65,7 @@ public class ArtistaController {
         	
         	
         	this.artistaService.inserisci(artista);
-            model.addAttribute("artisti", this.artistaService.artistiPerNomeAndCognome(artista.getNome(), artista.getCognome()));
+            model.addAttribute("artisti", this.artistaService.tutti());
             return "artisti.html";
         }
         model.addAttribute("artista", new Artista());
