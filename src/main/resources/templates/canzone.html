@@ -4,18 +4,32 @@
 
 <body>
 	<nav>
-		<p class="titolo">INTERNATIONAL MUSEUM</p>
+		<p class="titolo">ROME ARENA</p>
 	</nav>
-	<div th:if="${canzone}" th:object="${canzone}" class="flex-container">
-		<div class="info">
-			Titolo: <span th:text="*{titolo}">qui-va-titolo</span><br>
-			Descrizione: <span th:text="*{testo}">qui-va-descrizione</span><br>
-			Anno di realizzazione: <span th:text="*{annoDiRealizzazione}">qui-va-anno</span><br>
+	<div th:if="${canzone}" th:object="${canzone}"
+		style="display: flex; justify-content: center; padding: 5%;">
+		<div class="box" >
+			<h2 th:text="*{titolo}" style=" text-align: center; margin-top: 0px;"> qui-va-titolo</h2>
+			<div class="info">
+				
+				Anno di realizzazione: <span th:text="*{annoDiRealizzazione}">qui-va-anno</span><br>
 
-			Artista: <span>
-				<a href="artista.html" th:href="@{'/artista' + '/' + ${artista.id}}"
-					th:text="|${artista.nome} ${artista.cognome}|"></a>
-			</span>
+				Artista: <span>
+					<a href="artista.html" th:href="@{'/artista' + '/' + ${artista.id}}"
+						th:text="|${artista.nome} ${artista.cognome}|"></a>
+				</span>
+			</div>
+		</div>
+		<div class="box" >
+			<h2 style=" text-align: center; margin-top: 0px;"> Testo</h2>
+			
+			<div class="info">
+				<span th:text="*{testo}">qui-va-descrizione</span><br>
+				
+
+				
+				
+			</div>
 		</div>
 	</div>
 	<div th:unless="${canzone}">Non esiste</div>
