@@ -10,7 +10,7 @@
 	<nav>
 		<p class="titolo">ROME MUSEUM</p>
 	</nav>
-	<form th:action="@{/admin/canzone}" method="POST" th:object="${canzone}">
+	<form  th:action="@{/admin/canzone}" method="POST" th:object="${canzone}">
 		<h4 class="titolo">Inserisci i dati di un'opera</h4>
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
@@ -23,7 +23,7 @@
 			</div>
 			<div>
 				<span class="campo-form">Testo:</span>
-				<span><input type="text" th:field="*{testo}" /></span>
+				<span><textarea type="text" th:field="*{testo}" ></textarea></span>
 				<span th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}"></span>
 			</div>
 	

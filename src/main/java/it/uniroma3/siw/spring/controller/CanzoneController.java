@@ -46,6 +46,7 @@ public class CanzoneController {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = this.canzoneService.getCredentialsService().getCredentials(userDetails.getUsername());
     	model.addAttribute("credentials", credentials);
+    	model.addAttribute("concerti",o.getConcerti());
     	return "canzone.html";
     }
 
@@ -60,6 +61,7 @@ public class CanzoneController {
     									Model model, BindingResult bindingResult) {
     	this.canzoneValidator.validate(canzone, bindingResult);
         if (!bindingResult.hasErrors()) {
+        	
         	this.canzoneService.inserisci(canzone);
             model.addAttribute("canzoni", this.canzoneService.tutti());
             return "canzoni.html";
