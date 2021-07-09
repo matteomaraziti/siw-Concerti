@@ -92,6 +92,37 @@ public class Canzone {
 		this.annoDiRealizzazione = annoDiRealizzazione;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((artista == null) ? 0 : artista.hashCode());
+		result = prime * result + ((titolo == null) ? 0 : titolo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Canzone other = (Canzone) obj;
+		if (artista == null) {
+			if (other.artista != null)
+				return false;
+		} else if (!artista.equals(other.artista))
+			return false;
+		if (titolo == null) {
+			if (other.titolo != null)
+				return false;
+		} else if (!titolo.equals(other.titolo))
+			return false;
+		return true;
+	}
+
 		
 	
 }

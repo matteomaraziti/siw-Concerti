@@ -28,6 +28,10 @@
 				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
 			</div>
 			<div>
+				<span class="campo-form">Data:</span>
+				<span><input type="date" th:field="*{dataConcerto}"/></span>
+			</div>
+			<div>
 				<span class="campo-form">Curatore:</span>
 				<select class="input2" name="sponsor" id="sponsor" th:field="*{sponsor}">
 					<option value="">---Seleziona---</option>

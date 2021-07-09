@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,17 @@ public class Concerto {
 	@ManyToMany(mappedBy="concerti")
 	private List<Canzone> canzoni;
 	
+	@Column(nullable=false)
+	private Date dataConcerto;
+	
+	public Date getDataConcerto() {
+		return dataConcerto;
+	}
+
+	public void setDataConcerto(Date data) {
+		this.dataConcerto = data;
+	}
+
 	@ManyToOne
 	private Sponsor sponsor;
 	
@@ -99,6 +111,37 @@ public class Concerto {
 
 	public void setSponsor(Sponsor sponsor) {
 		this.sponsor = sponsor;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dataConcerto == null) ? 0 : dataConcerto.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Concerto other = (Concerto) obj;
+		if (dataConcerto == null) {
+			if (other.dataConcerto != null)
+				return false;
+		} else if (!dataConcerto.equals(other.dataConcerto))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
 	}
 	
 	

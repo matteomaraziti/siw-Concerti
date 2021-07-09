@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.siw.spring.model.Artista;
 import it.uniroma3.siw.spring.model.Canzone;
 import it.uniroma3.siw.spring.model.Concerto;
 import it.uniroma3.siw.spring.repository.CanzoneRepository;
@@ -98,14 +99,26 @@ public class CanzoneService {
 	public void setArtistaService(ArtistaService artistaService) {
 		this.artistaService = artistaService;
 	}
+	
+	public boolean isArtistaLibero(Artista a, Concerto c) {
+		boolean isDisp=true;
+		for(Canzone s :a.getCanzoni()) {
+			for(Concerto p:s.getConcerti())
+				if((p.getDataConcerto().equals(c.getDataConcerto())&&!p.equals(c)))
+					isDisp=false;
+		}
+		return isDisp;
+	}
 
 	public List<Canzone> getCanzoniFiltered(Concerto c) {
 		List<Canzone> filtrato=new ArrayList<>();
-		for(Canzone o: this.tutti()) {
-			if(!o.getConcerti().contains(c))
-				filtrato.add(o);
+		List<Canzone> filtrato2=new ArrayList<>();
+		for(Canzone s : this.tutti()) {
+			if(isArtistaLibero(s.getArtista(),c)&&!c.getCanzoni().contains(s))
+				filtrato.add(s);
 		}
-		return filtrato;
+		
+		return filtrato;			
 	}
 }
 
