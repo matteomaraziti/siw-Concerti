@@ -3,6 +3,7 @@ html{
 	background-size: cover;
 	height: 100%;
 	overflow: hidden;
+	overflow-y:scroll;
 }
 body{
 	
