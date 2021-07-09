@@ -3,15 +3,15 @@
 <link th:href="@{/css/basic.css}" rel="stylesheet">
 
 <head>
-	<title>Inserisci Opera</title>
+	<title>Inserisci Canzone</title>
 </head>
 
 <body>
 	<nav>
-		<p class="titolo">ROME MUSEUM</p>
+		<p class="titolo">ROME ARENA</p>
 	</nav>
 	<form  th:action="@{/admin/canzone}" method="POST" th:object="${canzone}">
-		<h4 class="titolo">Inserisci i dati di un'opera</h4>
+		<h4 class="titolo">Inserisci i dati di una canzone</h4>
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
@@ -21,11 +21,7 @@
 				<span><input type="text" th:field="*{titolo}" /></span>
 				<span th:if="${#fields.hasErrors('titolo')}" th:errors="*{titolo}"></span>
 			</div>
-			<div>
-				<span class="campo-form">Testo:</span>
-				<span><textarea type="text" th:field="*{testo}" ></textarea></span>
-				<span th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}"></span>
-			</div>
+			
 	
 			<div>
 				<span class="campo-form">Anno:</span>
@@ -38,6 +34,11 @@
 					<option th:each="artista : ${artisti}" th:value="${artista.id}" th:text="${artista.nome} +' '+ ${artista.cognome}">
 					</option>
 				</select>
+			</div>
+			<div style="margin-top:0.5%;">
+				<span class="campo-form">Testo:</span>
+				<span><textarea type="text" th:field="*{testo}" style="padding-bottom:15%; width:21%;"></textarea></span>
+				<span th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}"></span>
 			</div>
 			<br>
 			
