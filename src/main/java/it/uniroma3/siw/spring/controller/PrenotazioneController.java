@@ -57,6 +57,6 @@ public class PrenotazioneController {
     	Credentials credentials = this.prenotazioneService.getConcertoService().getCredentialsService().getCredentials(userDetails.getUsername());
     	List<Concerto> concerti= credentials.getUser().getConcerti();
     	model.addAttribute("concerti",concerti);
-    	return "concerti.html";
+    	return "prenotazioni.html";
 	}
 }
