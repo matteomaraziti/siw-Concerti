@@ -8,11 +8,11 @@
 	</nav>
 	<div style="display: flex; justify-content: center;">
 		<div class="box" th:if="${concerto}" th:object="${concerto}">
-			<p><b>Il CONCERTO:</b></p>
+			<p><b></b></p>
 			<div class="info" style="padding-top: 20px;">
 			Nome: <span th:text="*{nome}">qui-va-nome</span><br>
 			Descrizione: <span th:text="*{descrizione}">qui-va-descrizione</span><br>
-			Sponsor: <span th:text="*{sponsor.nome}">qui-va-lo-sponsor</span><br>
+			Sponsor: <span th:text="*{sponsor.nome}"  th:if="${concerto.sponsor!=null}" >qui-va-lo-sponsor</span><br>
 			Data: <span th:text="*{dataConcerto}">qui-va-la-data</span>
 			</div>
 		</div>
